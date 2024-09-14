@@ -53,7 +53,7 @@ class FLOW_API UFlowComponent : public UActorComponent, public IFlowOwnerInterfa
 //////////////////////////////////////////////////////////////////////////
 // Identity Tags
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Flow")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Flow", meta = (Validate, Categories = "Flow"))
 	FGameplayTagContainer IdentityTags;
 
 private:
@@ -70,16 +70,16 @@ public:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Flow")
-	void AddIdentityTag(const FGameplayTag Tag, const EFlowNetMode NetMode = EFlowNetMode::Authority);
+	void AddIdentityTag(UPARAM(meta = (Categories = "Flow")) const FGameplayTag Tag, const EFlowNetMode NetMode = EFlowNetMode::Authority);
 
 	UFUNCTION(BlueprintCallable, Category = "Flow")
-	void AddIdentityTags(FGameplayTagContainer Tags, const EFlowNetMode NetMode = EFlowNetMode::Authority);
+	void AddIdentityTags(UPARAM(meta = (Categories = "Flow")) FGameplayTagContainer Tags, const EFlowNetMode NetMode = EFlowNetMode::Authority);
 
 	UFUNCTION(BlueprintCallable, Category = "Flow")
-	void RemoveIdentityTag(const FGameplayTag Tag, const EFlowNetMode NetMode = EFlowNetMode::Authority);
+	void RemoveIdentityTag(UPARAM(meta = (Categories = "Flow")) const FGameplayTag Tag, const EFlowNetMode NetMode = EFlowNetMode::Authority);
 
 	UFUNCTION(BlueprintCallable, Category = "Flow")
-	void RemoveIdentityTags(FGameplayTagContainer Tags, const EFlowNetMode NetMode = EFlowNetMode::Authority);
+	void RemoveIdentityTags(UPARAM(meta = (Categories = "Flow")) FGameplayTagContainer Tags, const EFlowNetMode NetMode = EFlowNetMode::Authority);
 
 protected:
 	void RegisterWithFlowSubsystem();
@@ -175,20 +175,23 @@ private:
 // Root Flow
 
 public:
-	// Asset that might instantiated as "Root Flow" 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "RootFlow")
+	bool bHasRootFlow = false;
+	
+	// Asset that might instantiated as "Root Flow" 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "RootFlow", meta = (EditCondition = "bHasRootFlow", Validate))
 	UFlowAsset* RootFlow;
 
 	// If true, component will start Root Flow on Begin Play
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "RootFlow")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "RootFlow", meta = (EditCondition = "bHasRootFlow"))
 	bool bAutoStartRootFlow;
 
 	// Networking mode for creating this Root Flow
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "RootFlow")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "RootFlow", meta = (EditCondition = "bHasRootFlow"))
 	EFlowNetMode RootFlowMode;
 
 	// If false, another Root Flow instance won't be created from this component, if this Flow Asset is already instantiated
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "RootFlow")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "RootFlow", meta = (EditCondition = "bHasRootFlow"))
 	bool bAllowMultipleInstances;
 
 	UPROPERTY(SaveGame)

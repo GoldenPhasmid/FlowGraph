@@ -180,7 +180,7 @@ public:
 	 * @param bExactMatch If true, the tag has to be exactly present, if false then TagContainer will include it's parent tags while matching. Be careful, using latter option may be very expensive, as the search cost is proportional to the number of registered Gameplay Tags!
 	 */
 	UFUNCTION(BlueprintPure, Category = "FlowSubsystem", meta = (DeterminesOutputType = "ComponentClass"))
-	TSet<UFlowComponent*> GetFlowComponentsByTag(const FGameplayTag Tag, const TSubclassOf<UFlowComponent> ComponentClass, const bool bExactMatch = true) const;
+	TSet<UFlowComponent*> GetFlowComponentsByTag(UPARAM(meta = (Categories = "Flow")) const FGameplayTag Tag, const TSubclassOf<UFlowComponent> ComponentClass, const bool bExactMatch = true) const;
 
 	/**
 	 * Returns all registered Flow Components identified by Any or All provided tags
@@ -191,7 +191,7 @@ public:
 	* @param bExactMatch If true, the tag has to be exactly present, if false then TagContainer will include it's parent tags while matching. Be careful, using latter option may be very expensive, as the search cost is proportional to the number of registered Gameplay Tags!
 	 */
 	UFUNCTION(BlueprintPure, Category = "FlowSubsystem", meta = (DeterminesOutputType = "ComponentClass"))
-	TSet<UFlowComponent*> GetFlowComponentsByTags(const FGameplayTagContainer Tags, const EGameplayContainerMatchType MatchType, const TSubclassOf<UFlowComponent> ComponentClass, const bool bExactMatch = true) const;
+	TSet<UFlowComponent*> GetFlowComponentsByTags(UPARAM(meta = (Categories = "Flow")) const FGameplayTagContainer Tags, const EGameplayContainerMatchType MatchType, const TSubclassOf<UFlowComponent> ComponentClass, const bool bExactMatch = true) const;
 
 	/**
 	 * Returns all registered actors with Flow Component identified by given tag
@@ -201,7 +201,7 @@ public:
 	 * @param bExactMatch If true, the tag has to be exactly present, if false then TagContainer will include it's parent tags while matching. Be careful, using latter option may be very expensive, as the search cost is proportional to the number of registered Gameplay Tags!
 	 */
 	UFUNCTION(BlueprintPure, Category = "FlowSubsystem", meta = (DeterminesOutputType = "ActorClass"))
-	TSet<AActor*> GetFlowActorsByTag(const FGameplayTag Tag, const TSubclassOf<AActor> ActorClass, const bool bExactMatch = true) const;
+	TSet<AActor*> GetFlowActorsByTag(UPARAM(meta = (Categories = "Flow")) const FGameplayTag Tag, const TSubclassOf<AActor> ActorClass, const bool bExactMatch = true) const;
 
 	/**
 	 * Returns all registered actors with Flow Component identified by Any or All provided tags
@@ -212,7 +212,7 @@ public:
 	 * @param bExactMatch If true, the tag has to be exactly present, if false then TagContainer will include it's parent tags while matching. Be careful, using latter option may be very expensive, as the search cost is proportional to the number of registered Gameplay Tags!
 	 */
 	UFUNCTION(BlueprintPure, Category = "FlowSubsystem", meta = (DeterminesOutputType = "ActorClass"))
-	TSet<AActor*> GetFlowActorsByTags(const FGameplayTagContainer Tags, const EGameplayContainerMatchType MatchType, const TSubclassOf<AActor> ActorClass, const bool bExactMatch = true) const;
+	TSet<AActor*> GetFlowActorsByTags(UPARAM(meta = (Categories = "Flow")) const FGameplayTagContainer Tags, const EGameplayContainerMatchType MatchType, const TSubclassOf<AActor> ActorClass, const bool bExactMatch = true) const;
 
 	/**
 	 * Returns all registered actors as pairs: Actor as key, its Flow Component as value
@@ -222,7 +222,7 @@ public:
 	 * @param bExactMatch If true, the tag has to be exactly present, if false then TagContainer will include it's parent tags while matching. Be careful, using latter option may be very expensive, as the search cost is proportional to the number of registered Gameplay Tags!
 	 */
 	UFUNCTION(BlueprintPure, Category = "FlowSubsystem", meta = (DeterminesOutputType = "ActorClass"))
-	TMap<AActor*, UFlowComponent*> GetFlowActorsAndComponentsByTag(const FGameplayTag Tag, const TSubclassOf<AActor> ActorClass, const bool bExactMatch = true) const;
+	TMap<AActor*, UFlowComponent*> GetFlowActorsAndComponentsByTag(UPARAM(meta = (Categories = "Flow")) const FGameplayTag Tag, const TSubclassOf<AActor> ActorClass, const bool bExactMatch = true) const;
 
 	/**
 	 * Returns all registered actors as pairs: Actor as key, its Flow Component as value
@@ -233,7 +233,7 @@ public:
 	 * @param bExactMatch If true, the tag has to be exactly present, if false then TagContainer will include it's parent tags while matching. Be careful, using latter option may be very expensive, as the search cost is proportional to the number of registered Gameplay Tags!
 	 */
 	UFUNCTION(BlueprintPure, Category = "FlowSubsystem", meta = (DeterminesOutputType = "ActorClass"))
-	TMap<AActor*, UFlowComponent*> GetFlowActorsAndComponentsByTags(const FGameplayTagContainer Tags, const EGameplayContainerMatchType MatchType, const TSubclassOf<AActor> ActorClass, const bool bExactMatch = true) const;
+	TMap<AActor*, UFlowComponent*> GetFlowActorsAndComponentsByTags(UPARAM(meta = (Categories = "Flow")) const FGameplayTagContainer Tags, const EGameplayContainerMatchType MatchType, const TSubclassOf<AActor> ActorClass, const bool bExactMatch = true) const;
 
 	/**
 	 * Returns all registered Flow Components identified by given tag
